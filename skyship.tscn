@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://img/skyship.png" type="Texture" id=1]
+[ext_resource path="res://skyship.gd" type="Script" id=2]
+[ext_resource path="res://finish.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ship-movement-animation"
+length = 5.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9, 1.15, 1.75, 2.3, 2.75, 3.2, 3.85, 4.7, 4.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 138, 3 ), Vector2( 117, -21 ), Vector2( 48.5225, -14.3193 ), Vector2( -26.6357, -47.7229 ), Vector2( -60.0394, 10.7335 ), Vector2( -43.635, 64.0477 ), Vector2( 11.7297, 35.3401 ), Vector2( 60.9428, -15.9236 ), Vector2( -10.8263, -63.0862 ), Vector2( 3.5275, 8.68295 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 96.3834
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 20.9679
+height = 117.772
+
+[node name="skyship-root" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="skyship" type="Node2D" parent="."]
+position = Vector2( 3.5275, 8.68295 )
+
+[node name="Sprite" type="Sprite" parent="skyship"]
+texture = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="skyship"]
+anims/ship-movement-animation = SubResource( 1 )
+
+[node name="skyship-collision-box" type="Area2D" parent="."]
+position = Vector2( -38.0905, 23.1264 )
+
+[node name="CollisionShapebaloon" type="CollisionShape2D" parent="skyship-collision-box"]
+position = Vector2( 23.6969, -99.972 )
+shape = SubResource( 2 )
+
+[node name="CollisionShapeship" type="CollisionShape2D" parent="skyship-collision-box"]
+position = Vector2( 49.4795, 119.793 )
+rotation = 1.48353
+shape = SubResource( 3 )
+
+[node name="CollisionShapebaloon2" type="CollisionShape2D" parent="."]
+position = Vector2( -14.3936, -78.206 )
+shape = SubResource( 2 )
+
+[node name="CollisionShapeship2" type="CollisionShape2D" parent="."]
+position = Vector2( 11.389, 141.559 )
+rotation = 1.48353
+shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 23568
+limit_bottom = 0
+limit_smoothed = true
+
+[node name="finish" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = -644.795
+margin_top = -299.27
+margin_right = -643.795
+margin_bottom = -299.27
+[connection signal="area_entered" from="skyship-collision-box" to="." method="_on_Area2D_area_entered"]

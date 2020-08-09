@@ -1,0 +1,22 @@
+[gd_scene format=2]
+
+[node name="Node2D" type="Control"]
+margin_top = 1.0
+margin_right = 1.0
+margin_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 327.533
+margin_top = 299.806
+margin_right = 1327.53
+margin_bottom = 1299.81
+rect_scale = Vector2( 1.97013, 5.39784 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "Yeah, you have just finished this pointless game :D"
+__meta__ = {
+"_edit_use_anchors_": false
+}

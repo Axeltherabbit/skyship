@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="cloud" type="Node2D"]
+
+[node name="sprite" type="Sprite" parent="."]
+modulate = Color( 0.980392, 0.968627, 0.886275, 1 )
+scale = Vector2( 1.8, 1.8 )
